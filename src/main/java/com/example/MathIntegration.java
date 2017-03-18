@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -19,15 +20,27 @@ public class MathIntegration {
 
     Predicate p ;
   }
-
+  public static int integrateNumSlices(int numSlices,Predicate<Integer> p,Consumer<Integer> c){
+	  if(p.test(numSlices)){
+		 c.accept(numSlices);
+	  }
+	  return numSlices;
+  } 	
+  
   public static double integrate(Integrable func, double x1, double x2, int numSlices) {
-    if (numSlices < 1) numSlices = 1;
+  //  if (numSlices < 1) numSlices = 1;
+    
+    numSlices=integrateNumSlices(numSlices, x->x<1, x->x=1);
     double delta = (x2 - x1) / numSlices;
     double start = x1 + delta / 2.0;
     double sum = 0.0;
     for (int i = 0; i <numSlices; i++) {
       sum += delta * func.eval(start + delta * i);
     }
+    
+    
+    
+    
     return sum;
   }
 }

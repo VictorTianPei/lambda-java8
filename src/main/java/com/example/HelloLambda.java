@@ -17,6 +17,9 @@ public class HelloLambda {
     Comparator<String> c2  = (String s1, String s2) -> s1.compareTo(s2);
     Comparator<String> c3  = (s1, s2) -> s2.compareTo(s1);
     Comparator<String> c4 = String::compareTo;
+    Comparator<String> c5  = (s1,s2)->{
+    	return s1.length()-s2.length();
+    };
 
     Arrays.sort(strs, (s1, s2) -> s2.compareTo(s1));
     Arrays.sort(strs, String::compareToIgnoreCase);
